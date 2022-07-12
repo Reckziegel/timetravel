@@ -7,7 +7,7 @@ project_mean_model_uv <- function(.invariant, .horizon, .n = 10000, .model, ...)
 
 #' @keywords internal
 project_mean_model_uv.default <- function(.invariant, .horizon, .n = 10000, .model, ...) {
-  stop("`.invariant` must be a tibble, xts or a matrix.", call. = FALSE)
+  rlang::abort("`.invariant` must be a tibble, xts or a matrix.")
 }
 
 #' @keywords internal
@@ -70,7 +70,7 @@ project_mean_model_uv.matrix <- function(.invariant, .horizon, .n = 10000, .mode
 #' @keywords internal
 project_mean_model_ <- function(.invariant, .horizon, .n = 10000, .model, ...) {
   if (NCOL(.invariant) > 1) {
-    stop("`.invariant` must be an univariate time series.", call. = FALSE)
+    rlang::abort("`.invariant` must be an univariate time series.")
   }
   assertthat::assert_that(assertthat::is.number(.horizon))
   assertthat::assert_that(assertthat::is.number(.n))
@@ -82,6 +82,7 @@ project_mean_model_ <- function(.invariant, .horizon, .n = 10000, .model, ...) {
                        "arima"      = stats::arima(x = as.vector(.invariant), ...),
                        "auto.arima" = forecast::auto.arima(y = as.vector(.invariant),...),
                        "nnetar"     = forecast::nnetar(y = as.vector(.invariant), ...))
+
   if (.model == "ets") {
     .model_paths <- purrr::rerun(
       .n = .n,
@@ -99,6 +100,7 @@ project_mean_model_ <- function(.invariant, .horizon, .n = 10000, .model, ...) {
       .n = .n,
       forecast:::simulate.nnetar(object = .model_fit, nsim = .horizon, bootstrap = TRUE))
   }
+
   .model_paths <- .model_paths |>
     purrr::map(~mean(.invariant) + (exp(cumsum(.x)) - 1))
 
@@ -135,7 +137,7 @@ project_garch_model_uv <- function(.invariant, .horizon, .n = 10000, .model, ...
 
 #' @keywords internal
 project_garch_model_uv.default <- function(.invariant, .horizon, .n = 10000, .model, ...) {
-  stop("`.invariant` must be a tibble, xts or a matrix.", call. = FALSE)
+  rlang::abort("`.invariant` must be a tibble, xts or a matrix.")
 }
 
 #' @keywords internal

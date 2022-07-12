@@ -1,11 +1,11 @@
 Package: timetravel
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Project a Distribution into a Desided Horizon
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Author: Bernardo Reckziegel
+Maintainer: Bernardo Reckziegel <bernardo_cse@hotmail.com>
+Description: Distribution projection via the Fourier Transform Characteristic
+    function.
 License: MIT + file LICENSE
 Encoding: UTF-8
 RoxygenNote: 7.2.0
@@ -14,6 +14,7 @@ Imports:
     devtools,
     dplyr,
     forecast,
+    ggplot2,
     ghyp,
     lubridate,
     purrr,
@@ -24,3 +25,5 @@ Imports:
     vctrs
 Suggests: 
     roxygen2
+URL: https://reckziegel.github.io/timetravel/
+BugReports: https://github.com/Reckziegel/timetravel/issues

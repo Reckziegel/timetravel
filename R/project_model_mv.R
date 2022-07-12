@@ -8,7 +8,7 @@ project_mean_model_mv <- function(.invariant, .horizon, .n = 10000, .model, ...)
 
 #' @keywords internal
 project_mean_model_mv.default <- function(.invariant, .horizon, .n = 10000, .model, ...) {
-  stop("`.invariant` must be a tibble, xts or a matrix.", call. = FALSE)
+  rlang::abort("`.invariant` must be a tibble, xts or a matrix.")
 }
 
 #' @keywords internal
@@ -81,7 +81,7 @@ project_garch_model_mv <- function(.invariant, .horizon, .n = 10000, .model, ...
 
 #' @keywords internal
 project_garch_model_mv.default <- function(.invariant, .horizon, .n = 10000, .model, ...) {
-  stop("`.invariant` must be a tibble, xts or a matrix.", call. = FALSE)
+  rlang::abort("`.invariant` must be a tibble, xts or a matrix.")
 }
 
 #' @keywords internal

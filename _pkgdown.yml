@@ -1,0 +1,26 @@
+url: https://reckziegel.github.io/timetravel/
+template:
+  bootstrap: 5
+  bootswatch: litera
+
+reference:
+
+    - title: Fourier Transform Projection
+      contents:
+      - project_np
+      - project_t
+      - project_vg
+      - project_nig
+      - project_hyp
+      - project_ghyp
+      - project_t_ghyp
+
+    - title: Model Projection
+      contents:
+      - project_mean_model
+      - project_garch_model
+
+    - title: Plot
+      contents:
+      - autoplot.projection
+

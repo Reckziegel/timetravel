@@ -22,12 +22,12 @@
 #' colnames(x) <- c("DAX", "SMI")
 #' project_mean_model(.invariant    = x,
 #'                    .horizon      = 21,
-#'                    .n            = 5,
+#'                    .n            = 10,
 #'                    .model        = "arima") # random-walk
 #'
 #' project_mean_model(.invariant    = x,
 #'                    .horizon      = 21,
-#'                    .n            = 5,
+#'                    .n            = 10,
 #'                    .model        = "nnetar") # neural-networks
 project_mean_model <- function(.invariant, .horizon, .n = 10000, .model, ...) {
   UseMethod("project_mean_model", .invariant)
@@ -36,7 +36,7 @@ project_mean_model <- function(.invariant, .horizon, .n = 10000, .model, ...) {
 #' @rdname project_mean_model
 #' @export
 project_mean_model.default <- function(.invariant, .horizon, .n = 10000, .model, ...) {
-  stop("`.invariant` must be a tibble, xts or a matrix.", call. = FALSE)
+  rlang::abort("`.invariant` must be a tibble, xts or a matrix.")
 }
 
 #' @rdname project_mean_model
@@ -63,6 +63,16 @@ project_mean_model.xts <- function(.invariant, .horizon, .n = 10000, .model, ...
 #' @rdname project_mean_model
 #' @export
 project_mean_model.matrix <- function(.invariant, .horizon, .n = 10000, .model, ...) {
+  if (NCOL(.invariant) == 1) {
+    project_mean_model_uv(.invariant = .invariant, .horizon = .horizon, .n = .n, .model = .model, ...)
+  } else {
+    project_mean_model_mv(.invariant = .invariant, .horizon = .horizon, .n = .n, .model = .model, ...)
+  }
+}
+
+#' @rdname project_mean_model
+#' @export
+project_mean_model.numeric <- function(.invariant, .horizon, .n = 10000, .model, ...) {
   if (NCOL(.invariant) == 1) {
     project_mean_model_uv(.invariant = .invariant, .horizon = .horizon, .n = .n, .model = .model, ...)
   } else {
@@ -102,7 +112,7 @@ project_garch_model <- function(.invariant, .horizon, .n = 10000, .model, ...) {
 #' @rdname project_garch_model
 #' @export
 project_garch_model.default <- function(.invariant, .horizon, .n = 10000, .model, ...) {
-  stop("`.invariant` must be a tibble, xts or a matrix.", call. = FALSE)
+  rlang::abort("`.invariant` must be a tibble, xts or a matrix.")
 }
 
 #' @rdname project_garch_model
@@ -129,6 +139,16 @@ project_garch_model.xts <- function(.invariant, .horizon, .n = 10000, .model, ..
 #' @rdname project_garch_model
 #' @export
 project_garch_model.matrix <- function(.invariant, .horizon, .n = 10000, .model, ...) {
+  if (NCOL(.invariant) == 1) {
+    project_garch_model_uv(.invariant = .invariant, .horizon = .horizon, .n = .n, .model = .model, ...)
+  } else {
+    project_garch_model_mv(.invariant = .invariant, .horizon = .horizon, .n = .n, .model = .model, ...)
+  }
+}
+
+#' @rdname project_garch_model
+#' @export
+project_garch_model.numeric <- function(.invariant, .horizon, .n = 10000, .model, ...) {
   if (NCOL(.invariant) == 1) {
     project_garch_model_uv(.invariant = .invariant, .horizon = .horizon, .n = .n, .model = .model, ...)
   } else {

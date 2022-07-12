@@ -6,6 +6,7 @@
 \alias{project_mean_model.tbl}
 \alias{project_mean_model.xts}
 \alias{project_mean_model.matrix}
+\alias{project_mean_model.numeric}
 \title{Projection for Conditional Mean Models}
 \usage{
 project_mean_model(.invariant, .horizon, .n = 10000, .model, ...)
@@ -17,6 +18,8 @@ project_mean_model(.invariant, .horizon, .n = 10000, .model, ...)
 \method{project_mean_model}{xts}(.invariant, .horizon, .n = 10000, .model, ...)
 
 \method{project_mean_model}{matrix}(.invariant, .horizon, .n = 10000, .model, ...)
+
+\method{project_mean_model}{numeric}(.invariant, .horizon, .n = 10000, .model, ...)
 }
 \arguments{
 \item{.invariant}{An univariate time-series.}
@@ -43,11 +46,11 @@ x <- matrix(diff(log(EuStockMarkets[ , c(1, 2)])), ncol = 2)
 colnames(x) <- c("DAX", "SMI")
 project_mean_model(.invariant    = x,
                    .horizon      = 21,
-                   .n            = 5,
+                   .n            = 10,
                    .model        = "arima") # random-walk
 
 project_mean_model(.invariant    = x,
                    .horizon      = 21,
-                   .n            = 5,
+                   .n            = 10,
                    .model        = "nnetar") # neural-networks
 }

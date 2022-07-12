@@ -6,6 +6,7 @@
 \alias{project_garch_model.tbl}
 \alias{project_garch_model.xts}
 \alias{project_garch_model.matrix}
+\alias{project_garch_model.numeric}
 \title{Projection for Conditional GARCH Models}
 \usage{
 project_garch_model(.invariant, .horizon, .n = 10000, .model, ...)
@@ -17,6 +18,8 @@ project_garch_model(.invariant, .horizon, .n = 10000, .model, ...)
 \method{project_garch_model}{xts}(.invariant, .horizon, .n = 10000, .model, ...)
 
 \method{project_garch_model}{matrix}(.invariant, .horizon, .n = 10000, .model, ...)
+
+\method{project_garch_model}{numeric}(.invariant, .horizon, .n = 10000, .model, ...)
 }
 \arguments{
 \item{.invariant}{An univariate time-series.}
