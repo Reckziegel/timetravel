@@ -54,7 +54,7 @@ invariance
 #>  8 -0.00287 -0.00359 -0.00194   0.000837
 #>  9  0.00635  0.0110   0.000171 -0.00523 
 #> 10  0.00118  0.00436  0.00313   0.0140  
-#> # ... with 1,849 more rows
+#> # i 1,849 more rows
 ```
 
 Then, the randomness of the “market” can be estimated with
@@ -67,7 +67,7 @@ library(uncover)
 # Say... a Student-t distribution
 fit <- fit_t(.invariant = invariance)
 fit
-#> <list_of<double>[21]>
+#> <uncover_fit[21]>
 #> Converged:       TRUE
 #> Dimension:       4
 #> AIC:             -52711.16
@@ -82,19 +82,19 @@ A simulation of this characteristic process can be constructed with
 fit_simul <- simulate_margins(model = fit, n = 100000)
 fit_simul
 #> # A tibble: 100,000 x 4
-#>          DAX      SMI      CAC      FTSE
-#>        <dbl>    <dbl>    <dbl>     <dbl>
-#>  1  0.0153    0.0130   0.0142   0.0103  
-#>  2  0.0146    0.00934  0.0157   0.0102  
-#>  3 -0.0195   -0.0200  -0.0267  -0.00928 
-#>  4  0.00929   0.0140   0.00776  0.00475 
-#>  5  0.000635 -0.00255  0.00405 -0.00188 
-#>  6  0.0149    0.0170   0.0347   0.0213  
-#>  7  0.00675   0.00195  0.00199 -0.000436
-#>  8  0.00429   0.00944 -0.0122   0.00147 
-#>  9 -0.0151   -0.00297 -0.00552 -0.00119 
-#> 10  0.0133    0.0113   0.00407  0.0139  
-#> # ... with 99,990 more rows
+#>          DAX       SMI      CAC      FTSE
+#>        <dbl>     <dbl>    <dbl>     <dbl>
+#>  1  0.0140    0.00613   0.0109  -0.00299 
+#>  2  0.00691  -0.000953 -0.00856 -0.00385 
+#>  3 -0.0124   -0.00885  -0.0110  -0.0121  
+#>  4 -0.0128   -0.0113   -0.0145  -0.0134  
+#>  5  0.0118    0.0144   -0.00221  0.000536
+#>  6 -0.00163  -0.00985  -0.00161 -0.00582 
+#>  7  0.000489  0.00441  -0.00551  0.00333 
+#>  8 -0.00636  -0.00637  -0.00464 -0.00934 
+#>  9  0.00432   0.00224   0.0111   0.0119  
+#> 10  0.00810   0.00344   0.0145   0.00434 
+#> # i 99,990 more rows
 ```
 
 The `timetravel` package provides the family of functions `project_*()`
@@ -107,36 +107,36 @@ library(timetravel)
 prjct2 <- project_t(.invariant = fit_simul, .horizon = 2, .n = 100000)
 prjct2
 #> # A tibble: 100,000 x 4
-#>         DAX       SMI      CAC     FTSE
-#>       <dbl>     <dbl>    <dbl>    <dbl>
-#>  1  0.00911 -0.0107    0.0134  -0.0146 
-#>  2  0.00234  0.0145    0.0359  -0.0307 
-#>  3 -0.0213   0.00247  -0.00139  0.0155 
-#>  4  0.0281   0.00385  -0.0236   0.00451
-#>  5 -0.0352   0.0148    0.00175  0.00459
-#>  6  0.0221  -0.0115    0.0354  -0.0149 
-#>  7  0.0197  -0.000927  0.0105   0.00213
-#>  8 -0.0173   0.00567  -0.00844  0.0180 
-#>  9  0.0304   0.00639  -0.0132  -0.0248 
-#> 10 -0.00742 -0.000116  0.0118  -0.0188 
-#> # ... with 99,990 more rows
+#>         DAX      SMI      CAC      FTSE
+#>       <dbl>    <dbl>    <dbl>     <dbl>
+#>  1 -0.00427 -0.0282  -0.0369  -0.0146  
+#>  2  0.0266   0.00199 -0.00483  0.0120  
+#>  3  0.0231   0.00494  0.00400 -0.00538 
+#>  4  0.00690 -0.00486  0.0132  -0.0215  
+#>  5  0.0105   0.0260   0.0248   0.00385 
+#>  6  0.00204 -0.0262  -0.00939  0.00342 
+#>  7  0.0192   0.0403  -0.0215   0.0101  
+#>  8  0.00105 -0.0226  -0.0106   0.00154 
+#>  9 -0.0254  -0.00848  0.0270  -0.000536
+#> 10  0.00734 -0.0186  -0.00491  0.00597 
+#> # i 99,990 more rows
 
 prjct5 <- project_t(.invariant = fit_simul, .horizon = 5, .n = 100000)
 prjct5
 #> # A tibble: 100,000 x 4
-#>         DAX       SMI      CAC      FTSE
-#>       <dbl>     <dbl>    <dbl>     <dbl>
-#>  1  0.0117   0.0264   -0.00874 -0.00694 
-#>  2 -0.0277   0.0203    0.0423  -0.000148
-#>  3 -0.0423   0.00442   0.0349   0.000215
-#>  4  0.0301  -0.00111   0.0343   0.00844 
-#>  5 -0.00445  0.0266    0.00521 -0.0517  
-#>  6 -0.00387 -0.00343  -0.0111   0.00311 
-#>  7  0.0350  -0.0140   -0.0182   0.0401  
-#>  8 -0.0133   0.00545   0.00874 -0.0377  
-#>  9 -0.0306   0.000990 -0.0432   0.0207  
-#> 10 -0.00754  0.0497   -0.0293  -0.0234  
-#> # ... with 99,990 more rows
+#>          DAX      SMI      CAC     FTSE
+#>        <dbl>    <dbl>    <dbl>    <dbl>
+#>  1 -0.0138    0.0114   0.0161   0.00694
+#>  2 -0.000726 -0.0323   0.0300   0.00209
+#>  3  0.000105 -0.00773  0.0151  -0.00442
+#>  4  0.0248   -0.0147  -0.0199  -0.0228 
+#>  5 -0.00128  -0.0102  -0.0269  -0.0148 
+#>  6  0.00533  -0.00944  0.0120   0.00445
+#>  7  0.0113    0.0307   0.0296   0.00541
+#>  8  0.0119    0.0396  -0.0490  -0.0230 
+#>  9 -0.0298    0.0385   0.0225   0.00264
+#> 10 -0.0155    0.0366   0.00443 -0.0127 
+#> # i 99,990 more rows
 ```
 
 In witch the `autoplot` method is available:
@@ -152,6 +152,7 @@ autoplot(prjct2) +
 <img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
 
 ``` r
+
 # 5 days ahead
 autoplot(prjct5) + 
   scale_color_viridis_d(end = 0.75)
@@ -163,7 +164,7 @@ For more information on projection, please, see the reference page.
 
 ## References
 
--   Meucci, Attilio, ‘The Prayer’ Ten-Step Checklist for Advanced Risk
-    and Portfolio Management (February 2, 2011). Available at SSRN:
-    <https://ssrn.com/abstract=1753788> or
-    <http://dx.doi.org/10.2139/ssrn.1753788>
+- Meucci, Attilio, ‘The Prayer’ Ten-Step Checklist for Advanced Risk and
+  Portfolio Management (February 2, 2011). Available at SSRN:
+  <https://ssrn.com/abstract=1753788> or
+  <http://dx.doi.org/10.2139/ssrn.1753788>

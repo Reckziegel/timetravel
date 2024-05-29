@@ -5,12 +5,12 @@
 \alias{plot.projection}
 \title{Visualize the projected PDF distribution}
 \usage{
-\method{autoplot}{projection}(.projection)
+\method{autoplot}{projection}(object)
 
-\method{plot}{projection}(object, ...)
+\method{plot}{projection}(object)
 }
 \arguments{
-\item{.projection}{An object of the \code{projection} class.}
+\item{object}{An object of the \code{projection} class.}
 }
 \value{
 A \code{ggplot2} object.

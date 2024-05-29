@@ -1,6 +1,6 @@
 #' Visualize the projected PDF distribution
 #'
-#' @param .projection An object of the \code{projection} class.
+#' @param object An object of the \code{projection} class.
 #'
 #' @return A \code{ggplot2} object.
 #' @export
@@ -20,13 +20,13 @@
 #' autoplot(proj3)
 #' autoplot(proj5)
 #' autoplot(proj10)
-autoplot.projection <- function(.projection) {
+autoplot.projection <- function(object) {
 
-  if (inherits(.projection, "projection")) {
+  if (inherits(object, "projection")) {
 
-    .proj <- attributes(.projection)$attr
+    .proj <- attributes(object)$attr
 
-    .horizon <- attributes(.projection)$horizon
+    .horizon <- attributes(object)$horizon
 
     .proj |>
       tidyr::pivot_longer(cols = -.data$hor_x) |>
@@ -43,7 +43,7 @@ autoplot.projection <- function(.projection) {
 
   } else {
 
-    rlang::abort("`.projection` must be an object of the projection class.")
+    rlang::abort("`object` must be an object of the projection class.")
 
   }
 
@@ -52,6 +52,6 @@ autoplot.projection <- function(.projection) {
 
 #' @rdname autoplot
 #' @importFrom graphics plot
-plot.projection <- function(object, ...) {
-  print(ggplot2::autoplot(object, ...))
+plot.projection <- function(object) {
+  print(ggplot2::autoplot(object))
 }

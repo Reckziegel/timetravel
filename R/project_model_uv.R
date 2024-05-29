@@ -91,7 +91,7 @@ project_mean_model_ <- function(.invariant, .horizon, .n = 10000, .model, ...) {
     .model_paths <- purrr::rerun(
       .n = .n,
       forecast:::simulate.ar(object = .model_fit, nsim = .horizon, bootstrap = TRUE))
-  } else if (.model == "arima" || .model == "auro.arima") {
+  } else if (.model == "arima" || .model == "auto.arima") {
     .model_paths <- purrr::rerun(
       .n = .n,
       forecast:::simulate.Arima(object = .model_fit, nsim = .horizon, bootstrap = TRUE))
